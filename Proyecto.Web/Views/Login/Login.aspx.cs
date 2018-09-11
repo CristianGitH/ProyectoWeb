@@ -6,6 +6,7 @@ namespace Proyecto.Web.Views.Login
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //dfghjkhgvjbbjhb
             //if(!IsPostBack)
             //ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", "<script>swal('Buen trabajo!', 'Se realizo proceso con exito!', 'success')</script>");
         }
