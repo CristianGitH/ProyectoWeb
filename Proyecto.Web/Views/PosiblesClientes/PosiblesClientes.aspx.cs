@@ -29,8 +29,13 @@ namespace Proyecto.Web.Views.PosiblesClientes
         #region Eventos
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
+            {
+                if (Session["sessionEmail"] == null)
+                     Response.Redirect("../Login/Login.aspx");
                 getPosiblesClientes();
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -39,21 +44,21 @@ namespace Proyecto.Web.Views.PosiblesClientes
             {
                 string stMensaje = string.Empty;
                 if (String.IsNullOrEmpty(txtIdentificacion.Text)) stMensaje += "Ingrese identificacion,";
-                
+
 
                 if (!string.IsNullOrEmpty(stMensaje)) throw new Exception(stMensaje.TrimEnd(','));
 
                 Logica.Models.clsPosiblesClientes obclsPosiblesClientes = new Logica.Models.clsPosiblesClientes
                 {
-                    lnIdentificacion=Convert.ToInt64(txtIdentificacion.Text),
-                    stEmpresa=txtEmpresa.Text,
-                    stPrimerNombre=txtPrimerNombre.Text,
-                    stSegundoNombre=txtSegundoNombre.Text,
-                    stPrimerApellido=txtPrimerApellido.Text,
-                    stSegundoApellido=txtSegundoApellido.Text,
-                    stDireccion=txtDireccion.Text,
-                    stTelefono=txtTelefono.Text,
-                    stCorreo=txtCorreo.Text
+                    lnIdentificacion = Convert.ToInt64(txtIdentificacion.Text),
+                    stEmpresa = txtEmpresa.Text,
+                    stPrimerNombre = txtPrimerNombre.Text,
+                    stSegundoNombre = txtSegundoNombre.Text,
+                    stPrimerApellido = txtPrimerApellido.Text,
+                    stSegundoApellido = txtSegundoApellido.Text,
+                    stDireccion = txtDireccion.Text,
+                    stTelefono = txtTelefono.Text,
+                    stCorreo = txtCorreo.Text
                 };
 
                 Controllers.PosiblesClientesController obPosiblesClientesController = new Controllers.PosiblesClientesController();
@@ -65,7 +70,7 @@ namespace Proyecto.Web.Views.PosiblesClientes
 
                 getPosiblesClientes();
             }
-            catch (Exception ex) { ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", "<script> swal('Mensaje','"+  ex.Message+"','error')</script>"); }
+            catch (Exception ex) { ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", "<script> swal('Mensaje','" + ex.Message + "','error')</script>"); }
         }
 
         protected void gvwDatos_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
@@ -109,7 +114,7 @@ namespace Proyecto.Web.Views.PosiblesClientes
 
                     Controllers.PosiblesClientesController obPosiblesClientesController = new Controllers.PosiblesClientesController();
 
-                    
+
 
                     ClientScript.RegisterStartupScript(this.GetType(), "Mensaje", "<script>alert('" + obPosiblesClientesController.setAdministrarPosiblesClientesController(obclsPosiblesClientes, Convert.ToInt32(lblOpcion.Text)) + "')</script>");
                     lblOpcion.Text = string.Empty;

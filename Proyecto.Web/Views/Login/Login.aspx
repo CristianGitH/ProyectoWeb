@@ -52,14 +52,14 @@
                     <div class="form-group">
                         <div class="checkbox">
                             
-                                <asp:CheckBox ID="chkRecordar" runat="server" Text="Recordar Password" />                                
+                                <asp:CheckBox ID="chkRecordar" runat="server" Text="Recordar Email" />                                
                         </div>
                     </div>
                     <asp:Button ID="btnAceptar" runat="server" CssClass="btn btn-primary btn-block" Text="Aceptar" OnClick="btnAceptar_Click" />
                 </form>
                 <div class="text-center">
                     <a class="d-block small mt-3" href="../Registrar/Registrar.aspx">Registrar cuenta</a>
-                    <a class="d-block small" href="#">Olvido password?</a>
+                    <a class="d-block small" href="../RecuperarPassword/RecuperarPassword.aspx">Olvido password?</a>
                 </div>
             </div>
         </div>
